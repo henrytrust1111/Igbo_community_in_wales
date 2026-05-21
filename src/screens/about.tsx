@@ -9,7 +9,7 @@ const heroImage = '/gallery/Day 5 Climate Conversation ICW Wales.jpeg'
 const team = [
   ['Lady Dee Udeze', 'Community Leader', '/teams/Lady Dee.webp'],
   ['Edwina', 'Unity Advocate', '/teams/Edwina.webp'],
-  ['Chinwa', 'Cultural Promotion', '/teams/Chinwa.webp'],
+  ['Chinwa', 'Cultural Promotion', '/teams/chinwa.webp'],
   ['Madam Susan', 'Welfare & Culture', '/teams/Madam Susan.webp'],
   ['Mazi Obidient', 'Heritage Affairs', '/teams/Mazi Obidient.webp'],
   ['Chidi', 'Friendship & Unity', '/teams/Chidi.webp'],

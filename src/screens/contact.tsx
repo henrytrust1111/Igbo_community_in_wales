@@ -18,7 +18,7 @@ export function ContactPage() {
             [
               'location_on',
               'Our Base',
-              'The Church of Jesus Christ of Latter-Day Saints\nCardiff, CF14 6UH\nUnited Kingdom',
+              'Heol-Y-Deri\nCardiff CF14 6UH\nUnited Kingdom',
               'bg-primary',
               'text-primary',
             ],
@@ -42,10 +42,13 @@ export function ContactPage() {
             </div>
           ))}
           <div className="h-[250px] overflow-hidden border border-outline-variant grayscale transition-all duration-500 hover:grayscale-0">
-            <img
-              alt="Map location of Cardiff"
-              className="h-full w-full object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjbeZ0ezDQLJSIucWewcfsKNYNZcwFHnGjX9Lf-X5QWyYbBPUhyV96dyXNj5XBG1Xxr-0VHiH70zLAbqIEsCfodKRAqRp4NNOAGrMFRqJbascJH0WtL-PImT6pOU6YXL25qseRja1QZzLxDnhwRleLMuZA_rlXpPOP0V0yMCcd7L_5LcQUWiHN-vzuwdnzG_SlJCZLlLIQSZIw4QlwQ7tnDrdCuXHJNYfYy7tS1hAku5o41IIh4qovi7gEc1Fe5HiaM5pXdfOj6A"
+            <iframe
+              title="Google Map showing Heol-Y-Deri, Cardiff CF14 6UH"
+              className="h-full w-full"
+              src="https://www.google.com/maps?q=Heol-Y-Deri%2C+Cardiff+CF14+6UH%2C+UK&output=embed"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
         </div>
