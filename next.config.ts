@@ -9,8 +9,17 @@ const dirname = path.dirname(__filename)
 const nextConfig: NextConfig = {
   images: {
     localPatterns: [
+      { pathname: '/api/media/file/**' },
+      { pathname: '/gallery/**' },
+      { pathname: '/teams/**' },
+      { pathname: '/testimonials/**' },
+      { pathname: '/images/**' },
+      { pathname: '/og/**' },
+    ],
+    remotePatterns: [
       {
-        pathname: '/api/media/file/**',
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
       },
     ],
   },
