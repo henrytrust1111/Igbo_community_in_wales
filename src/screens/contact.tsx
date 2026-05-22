@@ -19,7 +19,7 @@ export function ContactPage() {
             [
               'location_on',
               'Our Base',
-              'The Church of Jesus Christ of Latter-Day Saints\nCardiff, CF14 6UH\nUnited Kingdom',
+              'Heol-Y-Deri\nCardiff CF14 6UH\nUnited Kingdom',
               'bg-primary',
               'text-primary',
             ],
