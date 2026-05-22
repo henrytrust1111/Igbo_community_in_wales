@@ -10,6 +10,7 @@ type EventsPageProps = {
 
 const SIDEBAR_CAP = 3
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://igbocommunitywales.org'
+const SITE_TZ = 'Europe/London'
 
 const artifactImage =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuBty-_6hey85S92RPZM21EuzJ-GzIyBrPgy60bsyLjrqjsZyILCwpl8VZ3MxSH17iPqBTG1KxZVXxnSq8Bne9KcwYbw_D3DqvaB-NCO_T_OsClD0vs8WWfEOLuqU-oPA9BLZIRQeqVueYUcQDmGfEEp3YHCDl8xta5SPSJ0qCVkP0fG_k_4Y7deFvntuNAbk7-MaWS-I5FRntio3D3PCujRG4iUbqbHU4OVzfwTjqBUFV-2quwh7iJLE9BrLz-DKs6HQS7X0dkCvQ'
@@ -60,7 +61,7 @@ export function EventsPage({ events }: EventsPageProps) {
 
       <section className="relative mt-20 overflow-hidden border-4 border-primary bg-surface-container-lowest p-12">
         <div className="absolute right-0 top-0 p-4 opacity-10">
-          <MaterialIcon name="festival" className="h-[120px] w-[120px]" />
+          <MaterialIcon name="festival" className="h-30 w-30" />
         </div>
         <div className="relative z-10 grid items-center gap-12 md:grid-cols-2">
           <div>
@@ -72,13 +73,6 @@ export function EventsPage({ events }: EventsPageProps) {
               our rich Igbo heritage with the wider Welsh landscape.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="/contact"
-                className="flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 font-label-md text-label-md text-on-primary transition-all hover:bg-primary-container"
-              >
-                <MaterialIcon name="calendar_add_on" className="h-5 w-5" />
-                Sync to My Calendar
-              </Link>
               <Link
                 href="/gallery"
                 className="rounded-lg border border-tertiary px-8 py-4 font-label-md text-label-md text-tertiary transition-all hover:bg-tertiary hover:text-on-tertiary"
@@ -125,9 +119,9 @@ function HeroCard({
   showFeaturedBadge: boolean
 }) {
   const rsvpLabel = event.registerCta ?? 'RSVP Now'
-  const rsvpHref = event.linkToRegister ?? '/contact'
+  const rsvpHref = event.linkToRegister || '/contact'
   const isExternal = rsvpHref.startsWith('http')
-
+  console.log('Rendering HeroCard for event:', event)
   return (
     <section className="group overflow-hidden border border-outline-variant/40 bg-surface-container-lowest md:col-span-12 lg:col-span-8">
       <div className="relative h-[400px] w-full overflow-hidden">
@@ -175,15 +169,10 @@ function HeroCard({
         </p>
         <div className="flex shrink-0 gap-4">
           <Link
-            href="/contact"
-            className="rounded-lg border border-secondary px-6 py-3 font-label-md text-label-md text-secondary transition-all hover:bg-secondary hover:text-on-secondary"
-          >
-            Learn More
-          </Link>
-          <Link
             href={rsvpHref}
             {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            className="rounded-lg bg-primary px-8 py-3 font-label-md text-label-md text-on-primary transition-all hover:bg-primary-container hover:shadow-lg"
+            title={rsvpLabel}
+            className="block max-w-48 lg:max-w-52 truncate rounded-lg bg-primary px-8 py-3 text-center font-label-md text-label-md text-on-primary transition-all hover:bg-primary-container hover:shadow-lg"
           >
             {rsvpLabel}
           </Link>
@@ -297,21 +286,44 @@ function formatDate(iso: string): string {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
+    timeZone: SITE_TZ,
   })
+}
+
+function partsIn(iso: string): { day: number; month: number; year: number } {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+    timeZone: SITE_TZ,
+  }).formatToParts(new Date(iso))
+  const get = (type: Intl.DateTimeFormatPartTypes) =>
+    Number(parts.find((p) => p.type === type)?.value ?? 0)
+  return { day: get('day'), month: get('month'), year: get('year') }
 }
 
 function formatDateRange(startIso: string, endIso?: string | null): string {
   if (!endIso) return formatDate(startIso)
-  const start = new Date(startIso)
-  const end = new Date(endIso)
-  if (start.toDateString() === end.toDateString()) return formatDate(startIso)
-  const sameYear = start.getFullYear() === end.getFullYear()
-  const sameMonth = sameYear && start.getMonth() === end.getMonth()
+  const s = partsIn(startIso)
+  const e = partsIn(endIso)
+  if (s.day === e.day && s.month === e.month && s.year === e.year) return formatDate(startIso)
+  const sameYear = s.year === e.year
+  const sameMonth = sameYear && s.month === e.month
   if (sameMonth) {
-    return `${start.getDate()} – ${end.getDate()} ${start.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}`
+    const tail = new Date(startIso).toLocaleDateString('en-GB', {
+      month: 'long',
+      year: 'numeric',
+      timeZone: SITE_TZ,
+    })
+    return `${s.day} – ${e.day} ${tail}`
   }
   if (sameYear) {
-    return `${start.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' })} – ${end.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}`
+    const startPart = new Date(startIso).toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      timeZone: SITE_TZ,
+    })
+    return `${startPart} – ${formatDate(endIso)}`
   }
   return `${formatDate(startIso)} – ${formatDate(endIso)}`
 }
@@ -321,6 +333,7 @@ function formatTime(iso: string): string {
     hour: 'numeric',
     minute: '2-digit',
     hour12: true,
+    timeZone: SITE_TZ,
   })
 }
 
@@ -332,8 +345,10 @@ function formatTimeRange(startIso: string, endIso?: string | null): string {
 function dayChip(iso: string): { day: string; month: string } {
   const d = new Date(iso)
   return {
-    day: d.getDate().toString(),
-    month: d.toLocaleDateString('en-US', { month: 'short' }).toUpperCase(),
+    day: d.toLocaleDateString('en-GB', { day: 'numeric', timeZone: SITE_TZ }),
+    month: d
+      .toLocaleDateString('en-US', { month: 'short', timeZone: SITE_TZ })
+      .toUpperCase(),
   }
 }
 
