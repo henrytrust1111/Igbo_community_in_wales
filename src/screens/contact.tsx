@@ -1,9 +1,10 @@
+import { ContactForm } from '@/components/contact-form'
 import { MaterialIcon } from '@/components/material-icon'
 
 export function ContactPage() {
   return (
     <div className="relative overflow-hidden">
-      <div className="pattern-bg absolute inset-0 pointer-events-none" />
+      <div className="pattern-bg pointer-events-none absolute inset-0" />
       <section className="relative mx-auto max-w-container-max px-margin-desktop pb-16 pt-24 text-center">
         <h1 className="mb-6 font-display-lg text-display-lg text-primary">Get in Touch</h1>
         <p className="mx-auto max-w-2xl font-body-lg text-body-lg text-on-surface-variant">
@@ -41,11 +42,14 @@ export function ContactPage() {
               </div>
             </div>
           ))}
-          <div className="h-[250px] overflow-hidden border border-outline-variant grayscale transition-all duration-500 hover:grayscale-0">
-            <img
-              alt="Map location of Cardiff"
-              className="h-full w-full object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjbeZ0ezDQLJSIucWewcfsKNYNZcwFHnGjX9Lf-X5QWyYbBPUhyV96dyXNj5XBG1Xxr-0VHiH70zLAbqIEsCfodKRAqRp4NNOAGrMFRqJbascJH0WtL-PImT6pOU6YXL25qseRja1QZzLxDnhwRleLMuZA_rlXpPOP0V0yMCcd7L_5LcQUWiHN-vzuwdnzG_SlJCZLlLIQSZIw4QlwQ7tnDrdCuXHJNYfYy7tS1hAku5o41IIh4qovi7gEc1Fe5HiaM5pXdfOj6A"
+          <div className="h-62.5 overflow-hidden border border-outline-variant grayscale transition-all duration-500 hover:grayscale-0">
+            <iframe
+              title="Map of Igbo Community Wales — Cardiff CF14 6UH"
+              src="https://www.google.com/maps?q=The+Church+of+Jesus+Christ+of+Latter-Day+Saints+Cardiff+CF14+6UH&output=embed"
+              className="h-full w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
             />
           </div>
         </div>
@@ -53,62 +57,7 @@ export function ContactPage() {
         <div className="lg:col-span-8">
           <div className="h-full border border-outline-variant bg-surface-container-lowest p-10">
             <h2 className="mb-8 font-headline-lg text-headline-lg text-primary">Send a Message</h2>
-            <form className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              <label className="space-y-2">
-                <span className="font-label-md text-label-md text-on-surface-variant">
-                  Full Name
-                </span>
-                <input
-                  className="w-full border border-outline-variant bg-surface p-3 outline-none transition-all focus:border-secondary focus:ring-2 focus:ring-secondary"
-                  placeholder="Enter your name"
-                  type="text"
-                />
-              </label>
-              <label className="space-y-2">
-                <span className="font-label-md text-label-md text-on-surface-variant">
-                  Email Address
-                </span>
-                <input
-                  className="w-full border border-outline-variant bg-surface p-3 outline-none transition-all focus:border-secondary focus:ring-2 focus:ring-secondary"
-                  placeholder="name@example.com"
-                  type="email"
-                />
-              </label>
-              <label className="space-y-2 md:col-span-2">
-                <span className="font-label-md text-label-md text-on-surface-variant">
-                  Inquiry Type
-                </span>
-                <select className="w-full border border-outline-variant bg-surface p-3 outline-none transition-all focus:border-secondary focus:ring-2 focus:ring-secondary">
-                  <option>General Inquiry</option>
-                  <option>Membership Application</option>
-                  <option>Event Partnership</option>
-                  <option>Volunteer Opportunities</option>
-                  <option>Cultural Heritage Support</option>
-                </select>
-              </label>
-              <label className="space-y-2 md:col-span-2">
-                <span className="font-label-md text-label-md text-on-surface-variant">
-                  Your Message
-                </span>
-                <textarea
-                  className="w-full border border-outline-variant bg-surface p-3 outline-none transition-all focus:border-secondary focus:ring-2 focus:ring-secondary"
-                  placeholder="How can we assist you today?"
-                  rows={6}
-                />
-              </label>
-              <div className="md:col-span-2">
-                <button
-                  className="group flex items-center gap-2 bg-primary px-10 py-4 font-label-md text-label-md text-on-primary transition-all hover:bg-primary-container"
-                  type="button"
-                >
-                  Submit Message
-                  <MaterialIcon
-                    name="send"
-                    className="h-5 w-5 transition-transform group-hover:translate-x-1"
-                  />
-                </button>
-              </div>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>
