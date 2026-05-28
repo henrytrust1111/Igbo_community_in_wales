@@ -18,6 +18,7 @@ const gatheringImage =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuDGWKuHOhZ0Zm30bcsPqALqK6lnE00UNev_oB4esjsnY3rz3fl27arwgT2uQrjiXF3HxQFjVt2P5fIJ0yHRFtOvDzXmivwQp68W_UHTA3foorTgVKOosct1BJSuXSq_vghHo2iXP9oRlnXCHo__yVdH9V27dXEVHX0s36g-Nr2lpjQGuFno0Fd9GtW3G7SjkYIbvT4rajV2l-iXJkJQzxtICwmOjCC5U3y1eyl7Xee1G2xZebj-6V5IwFgl3lY1dDqElTTGB-J9UA'
 
 export function EventsPage({ events }: EventsPageProps) {
+  console.log('Rendering EventsPage with events:', events)
   const hero = events.find((e) => e.isFeatured) ?? events[0] ?? null
   const sidebar = events.filter((e) => e.id !== hero?.id).slice(0, SIDEBAR_CAP)
 
@@ -121,7 +122,6 @@ function HeroCard({
   const rsvpLabel = event.registerCta ?? 'RSVP Now'
   const rsvpHref = event.linkToRegister || '/contact'
   const isExternal = rsvpHref.startsWith('http')
-  console.log('Rendering HeroCard for event:', event)
   return (
     <section className="group overflow-hidden border border-outline-variant/40 bg-surface-container-lowest md:col-span-12 lg:col-span-8">
       <div className="relative h-[400px] w-full overflow-hidden">
@@ -346,9 +346,7 @@ function dayChip(iso: string): { day: string; month: string } {
   const d = new Date(iso)
   return {
     day: d.toLocaleDateString('en-GB', { day: 'numeric', timeZone: SITE_TZ }),
-    month: d
-      .toLocaleDateString('en-US', { month: 'short', timeZone: SITE_TZ })
-      .toUpperCase(),
+    month: d.toLocaleDateString('en-US', { month: 'short', timeZone: SITE_TZ }).toUpperCase(),
   }
 }
 
