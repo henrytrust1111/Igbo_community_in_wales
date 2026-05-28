@@ -44,7 +44,7 @@ export function ContactPage() {
           ))}
           <div className="h-62.5 overflow-hidden border border-outline-variant grayscale transition-all duration-500 hover:grayscale-0">
             <iframe
-              title="Map of Igbo Community Wales — Cardiff CF14 6UH"
+              title="Map of Igbo Community Wales - Cardiff CF14 6UH"
               src="https://www.google.com/maps?q=The+Church+of+Jesus+Christ+of+Latter-Day+Saints+Cardiff+CF14+6UH&output=embed"
               className="h-full w-full border-0"
               loading="lazy"

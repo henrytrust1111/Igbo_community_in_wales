@@ -82,7 +82,14 @@ export function ContactForm() {
     >
       <div
         aria-hidden="true"
-        style={{ position: 'absolute', left: '-10000px', top: 'auto', width: 1, height: 1, overflow: 'hidden' }}
+        style={{
+          position: 'absolute',
+          left: '-10000px',
+          top: 'auto',
+          width: 1,
+          height: 1,
+          overflow: 'hidden',
+        }}
       >
         <label>
           Do not fill this field
@@ -147,7 +154,7 @@ export function ContactForm() {
             className={fieldClass(Boolean(errors.inquiryType))}
           >
             <option value="" disabled>
-              Select an option…
+              Select an option...
             </option>
             {INQUIRY_TYPES.map((t) => (
               <option key={t} value={t}>
@@ -179,7 +186,7 @@ export function ContactForm() {
           disabled={isSubmitting}
           className="group flex items-center gap-2 bg-primary px-10 py-4 font-label-md text-label-md text-on-primary transition-all hover:bg-primary-container disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isSubmitting ? 'Sending…' : 'Submit Message'}
+          {isSubmitting ? 'Sending...' : 'Submit Message'}
           <MaterialIcon
             name="send"
             className="h-5 w-5 transition-transform group-hover:translate-x-1"
@@ -192,7 +199,7 @@ export function ContactForm() {
             className="mt-4 flex items-center gap-2 font-label-md text-label-md text-primary"
           >
             <MaterialIcon name="check_circle" className="h-5 w-5" />
-            Thanks — your message is on its way. We&apos;ll be in touch.
+            Thanks - your message is on its way. We&apos;ll be in touch.
           </p>
         ) : null}
         {status.kind === 'error' ? (
