@@ -24,7 +24,7 @@ const getUpcomingEvents = cache(async (): Promise<Event[]> => {
         { startDate: { greater_than_equal: cutoffIso } },
       ],
     },
-    sort: 'startDate',
+    sort: '-startDate',
     depth: 1,
     pagination: false,
   })
