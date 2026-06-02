@@ -40,7 +40,7 @@ export function AboutPage({ recentGallery }: AboutPageProps) {
             </p>
           </div>
           <div className="relative lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden border-t-4 border-primary bg-surface-container-high shadow-xl">
+            <div className="relative aspect-4/5 overflow-hidden border-t-4 border-primary bg-surface-container-high shadow-xl">
               <Image
                 src={heroImage}
                 alt="Community leaders in traditional Igbo attire"
@@ -105,12 +105,12 @@ export function AboutPage({ recentGallery }: AboutPageProps) {
               progress, and cultural excellence.
             </p>
           </div>
-          <div className="mx-8 hidden h-px flex-grow bg-outline-variant md:block" />
+          <div className="mx-8 hidden h-px grow bg-outline-variant md:block" />
         </div>
         <div className="grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-4">
           {team.map(([name, role, image]) => (
             <div key={name} className="group">
-              <div className="relative mb-6 aspect-[3/4] overflow-hidden border border-outline-variant bg-surface-container transition-colors group-hover:border-primary">
+              <div className="relative mb-6 aspect-3/4 overflow-hidden border border-outline-variant bg-surface-container transition-colors group-hover:border-primary">
                 <Image
                   src={image}
                   alt={name}
