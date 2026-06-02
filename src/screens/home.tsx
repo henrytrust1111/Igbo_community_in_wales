@@ -51,7 +51,7 @@ export function HomePage() {
             </h1>
             <p className="mb-10 max-w-lg font-body-lg text-body-lg text-on-surface-variant">
               Building unity and capacity for a stronger, more effective Igbo presence in Wales and
-              beyond. Preserving our ancestral heritage while flourishing in a modern society.
+              beyond. Preserving our ancestral heritage while flourishing in a modern society.( Udo Na Oganiru Njikota)
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -69,16 +69,16 @@ export function HomePage() {
             </div>
           </div>
           <div className="relative">
-            <div className="hard-shadow aspect-[4/5] overflow-hidden rounded-xl">
+            <div className="hard-shadow aspect-4/5 overflow-hidden rounded-xl">
               <img
                 className="h-full w-full object-cover"
                 src={heroImage}
                 alt="Igbo community members in traditional attire"
               />
             </div>
-            <div className="absolute -bottom-6 -left-6 hidden max-w-[200px] rounded-lg bg-secondary-container p-6 shadow-lg md:block">
+            <div className="absolute -bottom-6 -left-6 hidden max-w-50 rounded-lg bg-secondary-container p-6 shadow-lg md:block">
               <p className="font-label-md text-label-md italic text-on-secondary-container">
-                "Unity is strength; where there is teamwork and collaboration, wonderful things can
+                "Igwe bụ ike; where there is teamwork and collaboration, wonderful things can
                 be achieved."
               </p>
             </div>
