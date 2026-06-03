@@ -74,7 +74,7 @@ export function HomePage() {
                 className="h-full w-full object-cover"
                 src={heroImage}
                 alt="Igbo community members in traditional attire"
-              />
+              /> 
             </div>
             <div className="absolute -bottom-6 -left-6 hidden max-w-50 rounded-lg bg-secondary-container p-6 shadow-lg md:block">
               <p className="font-label-md text-label-md italic text-on-secondary-container">
